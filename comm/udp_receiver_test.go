@@ -5,19 +5,20 @@ import (
 	"testing"
 )
 
-var udpreceiver *UDPReceiver
+var udpReceiver *UDPReceiver
 
 func setup() {
-	var err error
-	udpreceiver, err = NewUDPReceiver(":8000")
+	udprec, err := NewUDPReceiver(":8000")
 
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+
+	udpReceiver = udprec
 }
 
 func teardown() {
-	err := udpreceiver.Close()
+	err := udpReceiver.Close()
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -31,7 +32,7 @@ func TestReceiver(t *testing.T) {
 	defer teardown()
 
 	t.Run("Receiver", func(t *testing.T) {
-		_, err := udpreceiver.ReceiveDatagram()
+		_, err := udpReceiver.ReceiveDatagram()
 		if err != nil {
 			t.Error(
 				"For receiver\n got:", err,
