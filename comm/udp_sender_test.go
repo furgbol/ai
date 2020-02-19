@@ -9,7 +9,6 @@ var udpSender *UDPSender
 
 func setups() {
 	udpsend, err := NewUDPSender(":8000")
-
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -34,12 +33,12 @@ func TestSender(t *testing.T) {
 		n, err := udpSender.WriteDatagram([]byte(msg))
 		if err != nil {
 			t.Error(
-				"For WriteDatagram\n got:", err,
+				"[UDP] For WriteDatagram\ngot:", err,
 				"\nwant: nil")
 		}
 		if n != len(msg) {
 			t.Error(
-				"For bytes number\n got:", n,
+				"[UDP] For bytes number\ngot:", n,
 				"\nwant: ", len(msg))
 		}
 	})

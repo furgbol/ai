@@ -9,7 +9,6 @@ var udpReceiver *UDPReceiver
 
 func setup() {
 	udprec, err := NewUDPReceiver(":8000")
-
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -35,7 +34,7 @@ func TestReceiver(t *testing.T) {
 		_, err := udpReceiver.ReceiveDatagram()
 		if err != nil {
 			t.Error(
-				"For receiver\n got:", err,
+				"[UDP] For receiver\ngot:", err,
 				"\nwant: nil")
 		}
 	})
