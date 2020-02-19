@@ -5,19 +5,20 @@ import (
 	"testing"
 )
 
-var udpsender *UDPSender
+var udpSender *UDPSender
 
 func setups() {
-	var err error
-	udpsender, err = NewUDPSender(":8000")
+	udpsend, err := NewUDPSender(":8000")
 
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+
+	udpSender = udpsend
 }
 
 func teardowns() {
-	err := udpsender.Close()
+	err := udpSender.Close()
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -30,7 +31,7 @@ func TestSender(t *testing.T) {
 
 	t.Run("Sender", func(t *testing.T) {
 		msg := "testing sender"
-		n, err := udpsender.WriteDatagram([]byte(msg))
+		n, err := udpSender.WriteDatagram([]byte(msg))
 		if err != nil {
 			t.Error(
 				"For WriteDatagram\n got:", err,
