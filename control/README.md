@@ -11,14 +11,11 @@ The control package contains modules that provide control of the environment, su
 
 ### Standard Command Type
 
-This type models the standard system command, containing the following methods:
+This type models the standard system command, containing the following fields:
 
-- *RobotID()*: Returns the robot id of the command.
-- *LinearVelocity()*: Returns the linear velocity of the command.
-- *AngularVelocity()*: Returns the angular velocity of the command.
-- *SetRobotID()*: Sets the robot id of the command.
-- *SetLinearVelocity()*: Sets the linear velocity of the command.
-- *SetAngularVelocity()*: Sets the angular velocity of the command.
+- *RobotID()*
+- *LinearVelocity()*
+- *AngularVelocity()*
 
 <a name="cmdrepo"></a>
 
