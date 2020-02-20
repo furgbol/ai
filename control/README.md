@@ -22,3 +22,5 @@ This type models the standard system command, containing the following fields:
 ### Commands Repository Type
 
 This type is an alias to a slice: *[]StandardCommand*
+
+To create a new Commands Repository, the **NewCommandsRepository**(*numberOfRobots* int) function is provided.
