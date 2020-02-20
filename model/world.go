@@ -20,7 +20,6 @@ type Ball struct {
 // Robot - Data type to model the robots
 type Robot struct {
 	ID              int
-	Role            string
 	CurrentPosition Pose
 	TargetPosition  Pose
 }

@@ -19,8 +19,7 @@ func TestNewWorld(t *testing.T) {
 
 	team := NewTeam(2)
 	team[0] = Robot{
-		ID:   1,
-		Role: "goalkeeper",
+		ID: 1,
 		CurrentPosition: Pose{
 			Position2D: Position2D{
 				X: 2,
@@ -48,19 +47,22 @@ func TestNewWorld(t *testing.T) {
 	if world.Team[0].ID != 1 {
 		t.Errorf("World creation failed: expected robot id: 1, got: %v", world.Team[0].ID)
 	}
-	if world.Team[0].Role != "goalkeeper" {
-		t.Errorf("World creation failed: expected robot role: goalkeeper, got: %v", world.Team[0].Role)
-	}
 	if world.Team[0].CurrentPosition.X != 2 {
 		t.Errorf("World creation failed: expected robot current position x: 2, got: %v", world.Team[0].CurrentPosition.X)
 	}
 	if world.Team[0].CurrentPosition.Y != 3 {
 		t.Errorf("World creation failed: expected robot current position y: 3, got: %v", world.Team[0].CurrentPosition.Y)
 	}
+	if world.Team[0].CurrentPosition.Orientation != 3.5 {
+		t.Errorf("World creation failed: expected robot current orientation: 3.5, got: %v", world.Team[0].CurrentPosition.Orientation)
+	}
 	if world.Team[0].TargetPosition.X != 3 {
 		t.Errorf("World creation failed: expected robot target position y: 3, got: %v", world.Team[0].TargetPosition.X)
 	}
 	if world.Team[0].TargetPosition.Y != 2 {
 		t.Errorf("World creation failed: expected robot target position y: 2, got: %v", world.Team[0].TargetPosition.Y)
+	}
+	if world.Team[0].TargetPosition.Orientation != 5.3 {
+		t.Errorf("World creation failed: expected robot target orientation: 5.3, got: %v", world.Team[0].TargetPosition.Orientation)
 	}
 }
