@@ -1,7 +1,6 @@
 package navigation
 
 import (
-	"fmt"
 	"math"
 
 	"github.com/furgbol/ai/model"
@@ -66,8 +65,7 @@ func (pathPlanner CasteljauPathPlanner) getPath(initialPose, targetPose model.Po
 	path := NewPath(pathPlanner.NumberOfUsedPoints)
 
 	factor := 1.0 / float64(pathPlanner.NumberOfPathPoints)
-	fmt.Printf("Factor: %v", factor)
-	t := factor
+	t := 0.0
 	for i := 0; i < pathPlanner.NumberOfUsedPoints; i++ {
 		t += factor
 		path[i] = model.Position2D{
