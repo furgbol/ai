@@ -8,17 +8,17 @@ import (
 
 // CasteljauPathPlanner - This type implements the PathPlanner interface. It plans the path based on Casteljau's algorithm that uses Bézier curves.
 type CasteljauPathPlanner struct {
-	pathPointsNumber int
-	usedPointsNumber int
-	distanceFactor 	 int
+	NumberOfPathPoints int
+	NumberOfUsedPoints int
+	DistanceFactor 	   int
 }
 
 // NewCasteljauPathPlanner creates an instance of a Casteljau Path Planner
 func NewCasteljauPathPlanner(numberOfPathPoints, numberOfUsedPoints, distanceFactor int) *CasteljauPathPlanner {
 	return &CasteljauPathPlanner{,
-		pathPointsNumber: numberOfPathPoints, 
-		usedPointsNumber: numberOfUsedPoints,
-		distanceFactor: distanceFactor,
+		NumberOfPathPoints: numberOfPathPoints, 
+		NumberOfUsedPoints: numberOfUsedPoints,
+		DistanceFactor: distanceFactor,
 	}
 }
 
@@ -39,6 +39,8 @@ func (pathPlanner CasteljauPathPlanner) PlanPath(initialPose, targetPose model.P
 	firstControlPoint, secondControlPoint := pathPlanner.generateControlPoints(initialPose, targetPose, distance)
 
 	path := pathPlanner.getPath(initialPose, targetPose, firstControlPoint, secondControlPoint)
+
+	return path
 }
 
 func calculateDistanceBetweenTwoPoints(firstPoint, secondPoint model.Position2D) float64 {
@@ -60,11 +62,11 @@ func (pathPlanner CasteljauPathPlanner) generateControlPoints(initialPose, targe
 }
 
 func (pathPlanner CasteljauPathPlanner) getPath(initialPose, targetPose model.Pose, firstControlPoint, secondControlPoint model.Position2D) Path {
-	path := NewPath(pathPlanner.numberOfUsedPoints)
+	path := NewPath(pathPlanner.NumberOfUsedPoints)
 
-	factor := 1 / pathPlanner.numberOfPathPoints
+	factor := 1 / pathPlanner.NumberOfPathPoints
 	t := 0
-	for i := 0; i < pathPlanner.numberOfUsedPoints; i++ {
+	for i := 0; i < pathPlanner.NumberOfUsedPoints; i++ {
 		t += factor
 		path[i] = model.Position2D{,
 			math.Pow((1 - t), 3) * initialPose.X + 3 * t * math.Pow((1 - t), 2) * firstControlPoint.X + 3 * math.Pow(t, 2) * (1 - t) * secondControlPoint.X + math.Pow(t, 3) * targetPose.X,
