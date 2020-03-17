@@ -12,14 +12,14 @@ func TestNewCommandsToSimulator(t *testing.T){
 	}
 }
 
-func TestEncode(t *testing.T){
+func TestEncodeToCommands(t *testing.T){
 	cmdRepo := control.NewCommandsRepository(3)
 	(*cmdRepo)[0] = control.StandardCommand{
 		RobotID: 1,
 		LinearVelocity: 10,
 		AngularVelocity: 5,
 	}
-	commands := Encode((*cmdRepo)[0])
+	commands := EncodeToCommands((*cmdRepo)[0])
 	if commands.LeftWheelVelocity != 5{
 		t.Errorf("Encode failed: expected left velocity: 5, got: %v", commands.LeftWheelVelocity)
 	}
