@@ -1,4 +1,4 @@
-package control
+package cmd
 
 // CommandsRepository - Data type to store the commands to be sent
 type CommandsRepository []StandardCommand
