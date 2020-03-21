@@ -1,4 +1,4 @@
-package control
+package cmd
 
 // StandardCommand - Data type to store standard command data
 type StandardCommand struct {
