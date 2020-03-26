@@ -2,7 +2,7 @@ package parse
 
 import (
 	"testing"
-	"github.com/furgbol/ai/control"
+	"github.com/furgbol/ai/control/cmd"
 )	
 
 func TestNewCommandsToSimulator(t *testing.T){
@@ -12,17 +12,18 @@ func TestNewCommandsToSimulator(t *testing.T){
 	}
 }
 
-func TestEncodeToCommands(t *testing.T){
-	cmdRepo := control.NewCommandsRepository(3)
-	(*cmdRepo)[0] = control.StandardCommand{
+func TestEncode(t *testing.T){
+	cmdRepo := cmd.NewCommandsRepository(3)
+	(*cmdRepo)[0] = cmd.StandardCommand{
 		RobotID: 1,
 		LinearVelocity: 10,
 		AngularVelocity: 5,
 	}
-	commands := EncodeToCommands((*cmdRepo)[0])
+	commands := Encode((*cmdRepo)[0])
 	if commands.LeftWheelVelocity != 5{
 		t.Errorf("Encode failed: expected left velocity: 5, got: %v", commands.LeftWheelVelocity)
 	}
 	if commands.RightWheelVelocity != 15{
 		t.Errorf("Encode failed: expected right velocity: 15, got: %v", commands.RightWheelVelocity)
 	}
+}

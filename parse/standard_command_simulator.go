@@ -1,13 +1,13 @@
 package parse
 
-import "github.com/furgbol/ai/control"
+import "github.com/furgbol/ai/control/cmd"
 
 // CommandsToSimulator - Data type to store the commands to simulator
-type CommandsToSimulator []control.SimulatorCommand
+type CommandsToSimulator []cmd.SimulatorCommand
 
-// EncodeToCommands convert commands to the simulator 
-func EncodeToCommands(cmdRepo control.StandardCommand) *control.SimulatorCommand {
-	return &control.SimulatorCommand{
+// Encode convert commands to the simulator 
+func Encode(cmdRepo cmd.StandardCommand) *cmd.SimulatorCommand {
+	return &cmd.SimulatorCommand{
 		LeftWheelVelocity: cmdRepo.LinearVelocity - cmdRepo.AngularVelocity,
 		RightWheelVelocity: cmdRepo.LinearVelocity + cmdRepo.AngularVelocity,
 	}
