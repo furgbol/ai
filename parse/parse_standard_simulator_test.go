@@ -26,4 +26,3 @@ func TestEncodeToCommands(t *testing.T){
 	if commands.RightWheelVelocity != 15{
 		t.Errorf("Encode failed: expected right velocity: 15, got: %v", commands.RightWheelVelocity)
 	}
-}
