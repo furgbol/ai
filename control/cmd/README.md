@@ -24,10 +24,8 @@ This type models the standard system command, containing the following fields:
 
 This type models the simulator command, having the following fields:
 
-- *RobotID()*
 - *LeftWheelVelocity()*
 - *RightWheelVelocity()*
-- *FinalPosition()*
 
 <a name="ctrl"></a>
 
