@@ -5,7 +5,6 @@ The command package contains modules that provide control over the properties of
 ## Contents
 
 - [Standard Command Type](#stdcmd)
-- [Commands Repository Type](#cmdrepo)
 - [Simulator Command Type](#slrcmd)
 - [Simulator Control Type](#ctrl)
 
@@ -18,14 +17,6 @@ This type models the standard system command, containing the following fields:
 - *RobotID()*
 - *LinearVelocity()*
 - *AngularVelocity()*
-
-<a name="cmdrepo"></a>
-
-### Commands Repository Type
-
-This type is an alias to a slice: *[]StandardCommand*
-
-To create a new Commands Repository, the **NewCommandsRepository**(*numberOfRobots* int) function is provided.
 
 <a name="slrcmd"></a>
 
