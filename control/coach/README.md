@@ -7,7 +7,7 @@ The coach package contains the function of distributing the roles of the players
 - [Coach Interface](#cch)
 - [Half Attack Coach Type](#hact)
 
-<a name="cch"><\a>
+<a name="cch"></a>
 
 ### Coach Interface
 
@@ -15,7 +15,7 @@ This interface take the roles of robots, containing the following method:
 
 - *GetRoles(evaluation evaluation.Evaluation)*
 
-<a name="hact"><\a>
+<a name="hact"></a>
 
 ### Half Attack Coach Type
 
