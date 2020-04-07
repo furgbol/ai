@@ -14,7 +14,14 @@ func TestStateFromSimulator(t *testing.T) {
 		t.Error("Parse state failed: Serialize error:", err)
 	}
 
-	stateNew, err := StateFromSimulator(serial, TeamBlue)
+	var receivedState Decoder
+
+	receivedState = ProtobufToWorldModel{
+		Team:         TeamBlue,
+		ReceivedData: serial,
+	}
+
+	stateNew, err := receivedState.Decode()
 	if err != nil {
 		t.Error("Parse state failed: Deserialize error:", err)
 	}
@@ -45,7 +52,12 @@ func TestStateFromSimulator(t *testing.T) {
 
 	//Team Yellow
 
-	stateNew, err = StateFromSimulator(serial, TeamYellow)
+	receivedState = ProtobufToWorldModel{
+		Team:         TeamYellow,
+		ReceivedData: serial,
+	}
+
+	stateNew, err = receivedState.Decode()
 	if err != nil {
 		t.Error("Parse state failed: Deserialize error:", err)
 	}

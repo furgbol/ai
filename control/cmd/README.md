@@ -6,7 +6,6 @@ The command package contains modules that provide control over the properties of
 
 - [Standard Command Type](#stdcmd)
 - [Simulator Command Type](#slrcmd)
-- [Simulator Control Type](#ctrl)
 
 <a name="stdcmd"></a>
 
@@ -26,14 +25,4 @@ This type models the simulator command, having the following fields:
 
 - *LeftWheelVelocity()*
 - *RightWheelVelocity()*
-
-<a name="ctrl"></a>
-
-### Simulator Control Type
-
-This type contains the data structure of the simulator control, these are:
-
-- *Paused()*
-- *NewBallPose()*
-- *NewRobotsBluePose()*
-- *NewRobotsYellowPose()*
+- *FinalPosition()*
