@@ -4,59 +4,72 @@ This package provides types and methods for exchanging data over the network. Su
 
 # Contents
 
-1. [Driver UDP](#udp)
+Data type and methods for UDP communication and the ZeroMQ library.
+
+1. [UDP](#udp)
 2. [ZMQ](#zmq)
 
+UDP communication and the ZeroMQ library use the Sender and Receiver interfaces.
+
+1. [Sender](#send)
+2. [Receiver](#rec)
+
 <a name="udp"></a>
-## UDP Sender
 
-Sends data (byte) to an address on the network.
+## UDP Type
 
-### Sender Methods
+This type stores the connection data containing the following fields:
+
+- *cnn()*
+
+### UDPSender
+
+Method for creating the UDP communication socket to send data:
 
 - **NewUDPSender**(*addr string*) (**UDPSender, error*)
-- **WriteDatagram**(*bytes []byte*) (*int, error*)
-- **Close**() (*error*)
 
-## UDP Receiver
+### UDPReceiver
 
-Receives data (byte) over the network.
-
-### Receiver Methods
+Method for creating the UDP communication socket to receive data:
 
 - **NewUDPReceiver**(*addr string*) (**UDPReceiver, error*)
-- **ReceiveDatagram**() (*[]byte, error*)
-- **Close**() (*error*)
 
 <a name="zmq"></a>
-## ZMQ
 
-Using the ZeroMQ library to exchange data on the network. Used TCP protocol.
+## ZMQ Type
 
-## Constants
+This type contains the following fields:
 
-- *PUB*
-- *SUB*
-- *PAIR*
+- *socket()*
 
-## ZMQ Client
+### ZMQSender
 
-Connects to a server to exchange data.
+Method to create the communication socket using ZMQ to send data:
 
-### ZMQ Client Methods
+- **NewZMQSender**(*addr string*) (**ZMQSender, error*)
 
-- **NewZMQClient**(*addr string, tp zmq.Type*) (**ZMQClient, error*)
-- **Send**(*data []byte*) (*int, error*)
-- **Receive**() (*[]byte, error*)
+### ZMQReceiver
+
+Method to create the communication socket using ZMQ to receive data:
+
+- **NewZMQReceiver**(*addr string*) (**ZMQReceiver, error*)
+
+<a name="send"></a>
+## Sender
+
+The Sender interface contains methods for creating a socket to send data over the network.
+
+### Sender Interface Methods
+
+- **Send**(*bytes []byte*) (*int, error*)
 - **Close**() (*error*)
 
-## ZMQ Server
+<a name="rec"></a>
+## Receiver
 
-Creates a socket for data exchange.
+The Receiver interface contains methods for creating a socket to receive data over the network.
 
-### ZMQ Server Methods
+### Receiver Interface Methods
 
-- **NewZMQServer**(*addr string, tp zmq.Type*) (**ZMQClient, error*)
-- **Send**(*data []byte*) (*int, error*)
 - **Receive**() (*[]byte, error*)
 - **Close**() (*error*)

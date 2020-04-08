@@ -4,40 +4,47 @@ This package provides types and methods for converting standard data to simulato
 
 # Contents
 
-1. [Parse Command](#command)
-2. [Parse Control](#control)
-3. [Parse State](#state)
+Data type of StandardCommand to protobuf and simulator state to world model.
+
+1. [StandardCommandToProtobuf](#command)
+2. [ProtobufToWorldModel](#state)
+
+StandardCommand to protobuf and simulator state to world model use the Encoder/Decoder interfaces.
+
+1. [Encoder](#encoder)
+2. [Decoder](#decoder)
 
 <a name="command"></a>
-## Parse Command
+## StandardCommandToProtobuf Type
 
-Serializes the simulator commands.
+This type contains the following fields:
 
-### Parse Command Methods
-
-- **SerializeToSimulatorCommand**(*commands []control.SimulatorCommand*) (*[]byte, error*)
-
-
-<a name="control"></a>
-## Parse Control
-
-Deserializes the simulator control data.
-
-### Parse Control Methods
-
-- **ControlFromSimulator**(*ctrl []byte*) (**control.Control, error*)
-
+- *Commands()*
 
 <a name="state"></a>
-## Parse State
+## ProtobufToWorldModel Type
 
-Deserializes the simulator state data and returns world model.
+Contains the following fields:
 
-### Parse State Constants
+- *Team()*
+- *ReceivedData()*
+
+Constants for the *Team* attribute:
 
 - *TeamYellow*
 - *TeamBlue*
 
-### Parse State Methods
+<a name="encoder"></a>
+## Encoder
 
-- **StateFromSimulator**(*state []byte, team int*) (**model.World, error*)
+The encoder interface contains methods for serializing data.
+
+- **Encode**() (*[]byte, error*)
+
+<a name="decoder"></a>
+## Decoder
+
+The decoder interface contains methods for deserializing data.
+
+- **Decode**() (**model.World, error*)
+

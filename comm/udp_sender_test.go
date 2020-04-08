@@ -5,15 +5,14 @@ import (
 	"testing"
 )
 
-var udpSender *UDPSender
+var udpSender Sender
 
 func setups() {
-	udpsend, err := NewUDPSender(":8000")
+	socket, err := NewUDPSender(":8001")
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-
-	udpSender = udpsend
+	udpSender = socket
 }
 
 func teardowns() {
@@ -23,22 +22,22 @@ func teardowns() {
 	}
 }
 
-func TestSender(t *testing.T) {
+func TestUDPSender(t *testing.T) {
 	setups()
 
 	defer teardowns()
 
 	t.Run("Sender", func(t *testing.T) {
 		msg := "testing sender"
-		n, err := udpSender.WriteDatagram([]byte(msg))
+		n, err := udpSender.Send([]byte(msg))
 		if err != nil {
 			t.Error(
-				"[UDP] For WriteDatagram\ngot:", err,
+				"[UDP] For Send\ngot:", err,
 				"\nwant: nil")
 		}
 		if n != len(msg) {
 			t.Error(
-				"[UDP] For bytes number\ngot:", n,
+				"[UDP] For Send: bytes number\ngot:", n,
 				"\nwant: ", len(msg))
 		}
 	})

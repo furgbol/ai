@@ -7,23 +7,21 @@ type UDPSender struct {
 	cnn net.Conn
 }
 
-// NewUDPSender create the socket at the address received as a parameter and return an 'instance' of UDPSender
+// NewUDPSender create the socket at the address received as a parameter
 func NewUDPSender(addr string) (*UDPSender, error) {
 	cnn, err := net.Dial("udp", addr)
 	if err != nil {
 		return nil, err
 	}
-	return &UDPSender{cnn}, nil
+	return &UDPSender{cnn: cnn}, nil
 }
 
-// WriteDatagram sends data (bytes) to the configured address
-func (s UDPSender) WriteDatagram(bytes []byte) (int, error) {
-	nbytes, err := s.cnn.Write(bytes)
-	return nbytes, err
+// Send sends data (bytes) to the configured address
+func (u UDPSender) Send(bytes []byte) (int, error) {
+	return u.cnn.Write(bytes)
 }
 
 // Close ends the connection
-func (s *UDPSender) Close() error {
-	err := s.cnn.Close()
-	return err
+func (u *UDPSender) Close() error {
+	return u.cnn.Close()
 }

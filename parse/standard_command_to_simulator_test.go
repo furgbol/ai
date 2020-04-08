@@ -8,23 +8,27 @@ import (
 	proto "github.com/golang/protobuf/proto"
 )
 
-func TestSerializeToSimulatorCommand(t *testing.T) {
-	command := []cmd.SimulatorCommand{
-		cmd.SimulatorCommand{
-			LeftWheelVelocity:  2,
-			RightWheelVelocity: 3,
-		},
-		cmd.SimulatorCommand{
-			LeftWheelVelocity:  -12.3,
-			RightWheelVelocity: -13,
-		},
-		cmd.SimulatorCommand{
-			LeftWheelVelocity:  -4.5,
-			RightWheelVelocity: 0,
+func TestEncodeForCommand(t *testing.T) {
+	var command Encoder
+
+	command = StandardCommandToProtobuf{
+		Commands: []cmd.StandardCommand{
+			cmd.StandardCommand{
+				LinearVelocity:  5,
+				AngularVelocity: 2,
+			},
+			cmd.StandardCommand{
+				LinearVelocity:  12.3,
+				AngularVelocity: 4,
+			},
+			cmd.StandardCommand{
+				LinearVelocity:  4.5,
+				AngularVelocity: 0,
+			},
 		},
 	}
 
-	serial, err := SerializeToSimulatorCommand(command)
+	serial, err := command.Encode()
 	if err != nil {
 		t.Error("Parse command failed: Serialize error:", err)
 	}
@@ -35,28 +39,28 @@ func TestSerializeToSimulatorCommand(t *testing.T) {
 		t.Error("Parse command failed: Deserialize error:", err)
 	}
 
-	if commandTest.GetRobotCommands()[0].GetLeftVel() != 2 {
+	if commandTest.GetRobotCommands()[0].GetLeftVel() != 3 {
 		t.Error("Parse command failed: left wheel speed\nhave: ", commandTest.GetRobotCommands()[0].GetLeftVel(),
-			"\nwant: 2")
-	}
-	if commandTest.GetRobotCommands()[0].GetRightVel() != 3 {
-		t.Error("Parse command failed: right wheel speed\nhave: ", commandTest.GetRobotCommands()[0].GetRightVel(),
 			"\nwant: 3")
 	}
-	if commandTest.GetRobotCommands()[1].GetLeftVel() != -12.3 {
+	if commandTest.GetRobotCommands()[0].GetRightVel() != 7 {
+		t.Error("Parse command failed: right wheel speed\nhave: ", commandTest.GetRobotCommands()[0].GetRightVel(),
+			"\nwant: 7")
+	}
+	if commandTest.GetRobotCommands()[1].GetLeftVel() != 8.3 {
 		t.Error("Parse command failed: left wheel speed\nhave: ", commandTest.GetRobotCommands()[1].GetLeftVel(),
-			"\nwant: -12.3")
+			"\nwant: 8.3")
 	}
-	if commandTest.GetRobotCommands()[1].GetRightVel() != -13 {
+	if commandTest.GetRobotCommands()[1].GetRightVel() != 16.3 {
 		t.Error("Parse command failed: right wheel speed\nhave: ", commandTest.GetRobotCommands()[1].GetRightVel(),
-			"\nwant: -13")
+			"\nwant: 16.3")
 	}
-	if commandTest.GetRobotCommands()[2].GetLeftVel() != -4.5 {
+	if commandTest.GetRobotCommands()[2].GetLeftVel() != 4.5 {
 		t.Error("Parse command failed: left wheel speed\nhave: ", commandTest.GetRobotCommands()[2].GetLeftVel(),
-			"\nwant: -4.5")
+			"\nwant: 4.5")
 	}
-	if commandTest.GetRobotCommands()[2].GetRightVel() != 0 {
+	if commandTest.GetRobotCommands()[2].GetRightVel() != 4.5 {
 		t.Error("Parse command failed: right wheel speed\nhave: ", commandTest.GetRobotCommands()[2].GetRightVel(),
-			"\nwant: 0")
+			"\nwant: 4.5")
 	}
 }
