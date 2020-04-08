@@ -9,9 +9,6 @@ type HalfAttackCoach struct {
 
 // NewHalfAttackCoach creates an instance of a Half Attack Coach  
 func NewHalfAttackCoach(index map[int]string) *HalfAttackCoach {
-	index[1] = "Goalkeeper"
-	index[2] = "Centerback"
-	index[3] = "striker"
 	return &HalfAttackCoach{
 		Index: index,
 	} 
