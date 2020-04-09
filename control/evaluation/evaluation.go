@@ -12,7 +12,7 @@ type DummyEvaluator struct {
 	eval Evaluation
 }
 
-// DummyEvaluator creates an instance of a DummyEvaluator  
+// DummyEvaluator creates an instance of DummyEvaluator  
 func NewDummyEvaluator() *DummyEvaluator {
 	return &DummyEvaluator{}
 }
