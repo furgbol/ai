@@ -16,7 +16,7 @@ type StandardCommandToProtobuf struct {
 // Encode receives a list of simulator commands and serializes with the protobuf
 func (commands StandardCommandToProtobuf) Encode() ([]byte, error) {
 	if len(commands.Commands) < 3 {
-		return nil, errors.New(string("[Parse Error] Insufficient arguments in SerializeToSimulatorCommand.\nhave: " + string(len(commands.Commands)) + "\nwant: 3"))
+		return nil, errors.New(string("[Parse Error] Insufficient arguments in Encode Command.\nhave: " + string(len(commands.Commands)) + "\nwant: 3"))
 	}
 
 	simulatorCmd := commands.standardCmdToSimulatorCmd()
@@ -38,11 +38,6 @@ func (commands StandardCommandToProtobuf) Encode() ([]byte, error) {
 	}
 
 	return serial, nil
-}
-
-func parseToFloat32(value float64) *float32 {
-	valueReturn := float32(value)
-	return &valueReturn
 }
 
 func (commands StandardCommandToProtobuf) standardCmdToSimulatorCmd() []cmd.SimulatorCommand {

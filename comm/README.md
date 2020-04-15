@@ -8,6 +8,7 @@ Data type and methods for UDP communication and the ZeroMQ library.
 
 1. [UDP](#udp)
 2. [ZMQ](#zmq)
+3. [Constants](#const)
 
 UDP communication and the ZeroMQ library use the Sender and Receiver interfaces.
 
@@ -73,3 +74,14 @@ The Receiver interface contains methods for creating a socket to receive data ov
 
 - **Receive**() (*[]byte, error*)
 - **Close**() (*error*)
+
+<a name="const"></a>
+## Constants
+
+Constants that contain the network addresses used by VSS-Core:
+
+- *AddrCommandTeamBlue()*
+- *AddrCommandTeamYellow()*
+- *AddrDebugTeamBlue()*
+- *AddrDebugTeamYellow()*
+- *AddrState()*
