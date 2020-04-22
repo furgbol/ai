@@ -1,6 +1,8 @@
 package comm
 
 import (
+	"time"
+
 	zmq "github.com/pebbe/zmq4"
 )
 
@@ -33,5 +35,6 @@ func (z *ZMQSender) Send(bytes []byte) (int, error) {
 
 // Close ends the connection
 func (z *ZMQSender) Close() error {
+	time.Sleep(time.Second)
 	return z.socket.Close()
 }

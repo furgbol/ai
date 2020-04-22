@@ -1,6 +1,8 @@
 package comm
 
 import (
+	"time"
+
 	zmq "github.com/pebbe/zmq4"
 )
 
@@ -42,5 +44,6 @@ func (z *ZMQReceiver) Receive() ([]byte, error) {
 
 // Close ends the connection
 func (z *ZMQReceiver) Close() error {
+	time.Sleep(time.Second)
 	return z.socket.Close()
 }
