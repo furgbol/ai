@@ -7,6 +7,8 @@ The command package contains modules that provide control over the properties of
 - [Standard Command Type](#stdcmd)
 - [Simulator Command Type](#slrcmd)
 - [Simulator Control Type](#ctrl)
+- [Generator Command Type](#gnrcmd)
+- [Generator Interface](#gnri)
 
 <a name="stdcmd"></a>
 
@@ -37,3 +39,23 @@ This type contains the data structure of the simulator control, these are:
 - *NewBallPose()*
 - *NewRobotsBluePose()*
 - *NewRobotsYellowPose()*
+
+<a name="gnrcmd"></a>
+
+### Generator Command Type
+
+This type models the commands to be generated, owning the following fields:
+
+- *robotID()*
+- *ConstAngularMult()*
+- *ConstLinearMult()*
+- *MaxAngularVelocity()*
+- *MaxLinearVelocity()*
+
+<a name="gnri"></a>
+
+### Generator Interface
+
+This interface calculates velocities to the robots, containing the following method:
+
+- *Generate(currentPose, targetPose model.Pose)*
