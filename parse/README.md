@@ -7,7 +7,6 @@ This package provides types and methods for converting standard data to simulato
 1. [Parse Command](#command)
 2. [Parse Control](#control)
 3. [Parse State](#state)
-4. [Parse Standard Simulator](#psdsmr)
 
 <a name="command"></a>
 ## Parse Command
@@ -42,14 +41,3 @@ Deserializes the simulator state data and returns world model.
 ### Parse State Methods
 
 - **StateFromSimulator**(*state []byte, team int*) (**model.World, error*)
-
-
-<a name="#psdsmr"></a>
-## Parse Standard Simulator
-
-This module transform the commands passed into commands for the simulator.
-
-### Parse Standard Simulator Methods
-
-- **EncodeToCommands**(cmdRepo control.StandardCommand) (*control.SimulatorCommand)
-- **NewCommandsToSimulator**(NumberOfRobots int) (CommandsToSimulator)
