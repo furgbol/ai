@@ -2,12 +2,12 @@ package cmd
 
 import (
 	"github.com/furgbol/ai/model"
-	"github.com/golang/math"
+	"math"
 )
 
 // GeneratorCommand - Data type to model the commands to be generated
 type GeneratorCommand struct {
-	robotID						 int
+	RobotID						 int
 	ConstAngularMult	 float64
 	ConstLinearMult		 float64
 	MaxAngularVelocity float64
@@ -15,8 +15,9 @@ type GeneratorCommand struct {
 }
 
 // NewGeneratorCommands creates an instance of a struct GeneratorCommand
-func NewGeneratorCommands(maxLinearVelocity, maxAngularVelocity, constAngularMult, constLinearMult float64) *GeneratorCommand {
+func NewGeneratorCommands(robotID int, maxLinearVelocity, maxAngularVelocity, constAngularMult, constLinearMult float64) *GeneratorCommand {
 	return &GeneratorCommand{
+		RobotID: robotID,
 		ConstAngularMult: constAngularMult,
 		ConstLinearMult: constLinearMult, 
 		MaxAngularVelocity: maxAngularVelocity,
@@ -24,21 +25,25 @@ func NewGeneratorCommands(maxLinearVelocity, maxAngularVelocity, constAngularMul
 	}
 }
 
+func calculateDistanceBetweenTwoPoints(firstPoint, secondPoint model.Position2D) float64 {
+	return math.Sqrt(math.Pow((secondPoint.X - firstPoint.X), 2) + math.Pow((secondPoint.Y - firstPoint.Y), 2))
+}
+
 // Generate is the function that calculates and ruturns the velocities of the robots
 func (commands GeneratorCommand) Generate(currentPose, targetPose model.Pose) StandardCommand {
-	DistanceTargetCurrent := math.Sqrt(math.Pow(currentPose.Position2D.X - targetPose.Position2D.X, 2) + math.Pow(currentPose.Position2D.Y - targetPose.Position2D.Y, 2))
-	linearVelocity :=  DistanceTargetCurrent * commands.ConstLinearMult
-	angularVelocity := DistanceTargetCurrent * commands.ConstAngularMult
+	Distance := calculateDistanceBetweenTwoPoints(currentPose.Position2D, targetPose.Position2D)
+	linearVelocity :=  Distance * commands.ConstLinearMult
+	angularVelocity := Distance * commands.ConstAngularMult
 
 	if linearVelocity > commands.MaxLinearVelocity {
 		linearVelocity = commands.MaxLinearVelocity 
 	}
 	if angularVelocity > commands.MaxAngularVelocity {
-		angularVelocity = commands.maxAngularVelocity
+		angularVelocity = commands.MaxAngularVelocity
 	}
 
 	return StandardCommand{
-		RobotID: commands.robotID,
+		RobotID: commands.RobotID,
 		LinearVelocity: linearVelocity,
 		AngularVelocity: angularVelocity,
 	}
