@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/furgbol/ai/control/navigation"
-	"github.com/furgbol/ai/debug"
 	"github.com/furgbol/ai/model"
 	PBDebug "github.com/furgbol/ai/parse/debug_pb"
 	"github.com/golang/protobuf/proto"
@@ -17,11 +16,9 @@ func TestDebugParser(t *testing.T) {
 	caminhos := generatePath()
 
 	debug := DebugToProtobuf{
-		Debug: debug.Debug{
-			InitialPoses: ini,
-			FinalPoses:   fim,
-			PathRobots:   caminhos,
-		},
+		InitialPoses: ini,
+		FinalPoses:   fim,
+		PathRobots:   caminhos,
 	}
 
 	Encoder = debug
