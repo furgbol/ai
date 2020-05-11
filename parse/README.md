@@ -8,6 +8,7 @@ Data type of StandardCommand to protobuf and simulator state to world model.
 
 1. [StandardCommandToProtobuf](#command)
 2. [ProtobufToWorldModel](#state)
+3. [DebugToProtobuf](#debug)
 
 StandardCommand to protobuf and simulator state to world model use the Encoder/Decoder interfaces.
 
@@ -33,6 +34,15 @@ Constants for the *Team* attribute:
 
 - *TeamYellow*
 - *TeamBlue*
+
+<a name="debug"></a>
+## DebugToProtobuf Type
+
+This type contains the following fields:
+
+- *InitialPoses()*
+- *FinalPoses()*
+- *PathRobots()*
 
 <a name="encoder"></a>
 ## Encoder
